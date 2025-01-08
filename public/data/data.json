@@ -1,0 +1,37 @@
+[
+  {
+    "source": "Initiate",
+    "target": "Validate",
+    "value": 57,
+    "timestamp": "2024-12-30T05:13:04.408Z",
+    "duration": 9
+  },
+  {
+    "source": "Validate",
+    "target": "Process",
+    "value": 36,
+    "timestamp": "2024-12-30T05:22:04.408Z",
+    "duration": 21
+  },
+  {
+    "source": "Process",
+    "target": "Review",
+    "value": 59,
+    "timestamp": "2024-12-30T05:43:04.408Z",
+    "duration": 59
+  },
+  {
+    "source": "Review",
+    "target": "Approve",
+    "value": 5,
+    "timestamp": "2024-12-30T06:42:04.408Z",
+    "duration": 36
+  },
+  {
+    "source": "Approve",
+    "target": "Complete",
+    "value": 17,
+    "timestamp": "2024-12-30T07:18:04.408Z",
+    "duration": 40
+  }
+]
