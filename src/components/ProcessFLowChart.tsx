@@ -5,7 +5,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 
 interface ProcessFlowChartProps {
-  data: any[];
+  data: { source: string; target: string; value: number }[]; // Define expected data structure
 }
 
 export default function ProcessFlowChart({ data }: ProcessFlowChartProps) {
@@ -57,7 +57,9 @@ export default function ProcessFlowChart({ data }: ProcessFlowChartProps) {
   );
 }
 
-function transformDataForSankey(data: any[]) {
+function transformDataForSankey(
+  data: { source: string; target: string; value: number }[]
+) {
   try {
     const nodeMap = new Map<string, number>();
     const links: { source: number; target: number; value: number }[] = [];

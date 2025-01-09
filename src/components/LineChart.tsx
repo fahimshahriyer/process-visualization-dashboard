@@ -13,7 +13,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 
 interface LineChartProps {
-  data: any[];
+  data: { timestamp: string; duration: number }[]; // Define the expected data type
 }
 
 export default function LineChart({ data }: LineChartProps) {
@@ -54,12 +54,14 @@ export default function LineChart({ data }: LineChartProps) {
   );
 }
 
-function transformDataForLineChart(data: any[]) {
+function transformDataForLineChart(
+  data: { timestamp: string; duration: number }[]
+) {
   try {
     const chartData = data
       .map((item) => {
         const timestamp = new Date(item.timestamp);
-        const duration = parseFloat(item.duration);
+        const duration = parseFloat(item.duration.toString());
 
         if (isNaN(timestamp.getTime())) {
           throw new Error("Invalid timestamp");

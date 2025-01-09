@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "source": "Initiate",
     "target": "Validate",
     "value": 57,
@@ -7,6 +8,7 @@
     "duration": 9
   },
   {
+    "id": 2,
     "source": "Validate",
     "target": "Process",
     "value": 36,
@@ -14,6 +16,7 @@
     "duration": 21
   },
   {
+    "id": 3,
     "source": "Process",
     "target": "Review",
     "value": 59,
@@ -21,6 +24,7 @@
     "duration": 59
   },
   {
+    "id": 4,
     "source": "Review",
     "target": "Approve",
     "value": 5,
@@ -28,6 +32,7 @@
     "duration": 36
   },
   {
+    "id": 5,
     "source": "Approve",
     "target": "Complete",
     "value": 17,

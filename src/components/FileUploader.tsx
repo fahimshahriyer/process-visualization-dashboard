@@ -5,8 +5,17 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Upload } from "lucide-react";
 
+interface ParsedData {
+  id: number;
+  source: string;
+  target: string;
+  value: number;
+  duration: number;
+  timestamp: string;
+}
+
 interface FileUploaderProps {
-  onDataUpload: (data: any[]) => void;
+  onDataUpload: (data: ParsedData[]) => void; // Update the type for the uploaded data
 }
 
 export default function FileUploader({ onDataUpload }: FileUploaderProps) {
@@ -24,16 +33,14 @@ export default function FileUploader({ onDataUpload }: FileUploaderProps) {
     const reader = new FileReader();
     reader.onload = (event) => {
       const content = event.target?.result as string;
-      let parsedData;
+      let parsedData: ParsedData[] = [];
 
       if (file.name.endsWith(".json")) {
         parsedData = JSON.parse(content);
-      } else if (file.name.endsWith(".csv")) {
-        parsedData = parseCSV(content);
       }
 
       if (parsedData) {
-        onDataUpload(parsedData);
+        onDataUpload(parsedData); // Ensure data is passed in the correct type
       }
     };
 
@@ -42,18 +49,6 @@ export default function FileUploader({ onDataUpload }: FileUploaderProps) {
     } else if (file.name.endsWith(".csv")) {
       reader.readAsText(file);
     }
-  };
-
-  const parseCSV = (content: string): any[] => {
-    const lines = content.split("\n");
-    const headers = lines[0].split(",");
-    return lines.slice(1).map((line) => {
-      const values = line.split(",");
-      return headers.reduce((obj: any, header, index) => {
-        obj[header.trim()] = values[index].trim();
-        return obj;
-      }, {});
-    });
   };
 
   return (

@@ -18,13 +18,16 @@ import LineChart from "./LineChart";
 import DataTable from "./DataTable";
 import { Button } from "./ui/button";
 
-export default function Dashboard() {
-  interface ProcessData {
-    id: number;
-    name: string;
-    duration: number;
-  }
+interface ProcessData {
+  id: number;
+  source: string;
+  target: string;
+  value: number;
+  duration: number;
+  timestamp: string;
+}
 
+export default function Dashboard() {
   const [data, setData] = useState<ProcessData[]>([]);
   const [isFileUploaded, setIsFileUploaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -52,7 +55,8 @@ export default function Dashboard() {
         link.href = URL.createObjectURL(file);
         link.download = "template.json";
         link.click();
-      });
+      })
+      .catch(() => setError("Failed to download template."));
   };
 
   const handleUseTemplateData = () => {

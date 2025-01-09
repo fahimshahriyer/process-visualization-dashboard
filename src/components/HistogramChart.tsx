@@ -13,7 +13,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 
 interface HistogramChartProps {
-  data: any[];
+  data: { duration: number }[]; // Define the expected data type
 }
 
 export default function HistogramChart({ data }: HistogramChartProps) {
@@ -54,15 +54,9 @@ export default function HistogramChart({ data }: HistogramChartProps) {
   );
 }
 
-function transformDataForHistogram(data: any[]) {
+function transformDataForHistogram(data: { duration: number }[]) {
   try {
-    const durations = data.map((item) => {
-      const duration = parseFloat(item.duration);
-      if (isNaN(duration)) {
-        throw new Error("Invalid duration value");
-      }
-      return duration;
-    });
+    const durations = data.map((item) => item.duration); // Directly use the `duration` field
 
     if (durations.length === 0) {
       return { histogramData: [], error: null };

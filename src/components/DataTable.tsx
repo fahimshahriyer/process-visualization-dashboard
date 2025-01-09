@@ -9,8 +9,17 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+interface RowData {
+  id: number;
+  source: string;
+  target: string;
+  value: number;
+  duration: number;
+  timestamp: string;
+}
+
 interface DataTableProps {
-  data: any[];
+  data: RowData[]; // Define data as an array of RowData objects
 }
 
 export default function DataTable({ data }: DataTableProps) {
@@ -30,7 +39,8 @@ export default function DataTable({ data }: DataTableProps) {
           {data.map((row, index) => (
             <TableRow key={index}>
               {headers.map((header) => (
-                <TableCell key={header}>{row[header]}</TableCell>
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                <TableCell key={header}>{(row as any)[header]}</TableCell>
               ))}
             </TableRow>
           ))}
